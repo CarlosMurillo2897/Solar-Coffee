@@ -1,13 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SolarCoffee.Data.Models
 {
-    public class CustomerAddress
+    public class CustomerAddress : BaseObject
     {
-        public int Id { get; set; }
-        public DateTime CreatedOn{ get; set; }
-        public DateTime UpdatedOn{ get; set; }
 
         [MaxLength(100)]
         public string AddressLine1 { get; set; }
