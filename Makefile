@@ -10,3 +10,6 @@ migrations:
 
 db:
     CD ./SolarCoffee.Data && DOTNET dotnet-ef -s ../SolarCoffee.Web/ Database Update && CD ..
+
+run:
+    DOTNET run -p SolarCoffee.Web
