@@ -42,7 +42,7 @@ namespace SolarCoffee.Services.Product
         {
             try
             {
-                _db.Products.Add(product);
+                _db.Add(product);
 
                 var newInventory = new ProductInventory
                 {
@@ -50,8 +50,10 @@ namespace SolarCoffee.Services.Product
                     QuantityOnHand = 0,
                     IdealQuantity = 10
                 };
-                _db.ProductInventories.Add(newInventory);
+                
+                _db.Add(newInventory);
                 _db.SaveChanges();
+
                 return new ServiceResponse<Data.Models.Product>
                 {
                     Data = product,

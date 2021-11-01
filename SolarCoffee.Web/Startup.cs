@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SolarCoffee.Data;
+using SolarCoffee.Services.Customer;
+using SolarCoffee.Services.Inventory;
+using SolarCoffee.Services.Order;
 using SolarCoffee.Services.Product;
 
 namespace SolarCoffee.Web
@@ -43,6 +43,9 @@ namespace SolarCoffee.Web
             });
 
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IInventoryService, InventoryService>();
+            services.AddTransient<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
