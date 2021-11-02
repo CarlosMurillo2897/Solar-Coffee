@@ -2,10 +2,13 @@
 
 namespace SolarCoffee.Web.Serialization
 {
-    public class ProductMapper
+    /// <summary>
+    /// Handles Mapping Product Data Models to and from Related View Models.
+    /// </summary>
+    public static class ProductMapper
     {
         /// <summary>
-        /// Maps a Product Data Model to ProductModel View Model.
+        /// Maps a Product (Data) into ProductModel (View Model).
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
@@ -25,7 +28,7 @@ namespace SolarCoffee.Web.Serialization
         }
         
         /// <summary>
-        /// Maps a ProductModel to a Product Data.
+        /// Maps a ProductModel (View Model) into a Product (Data).
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
