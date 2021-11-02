@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SolarCoffee.Web.ViewModels
 {
+    /// <summary>
+    /// Customer Address Entity DTO.
+    /// </summary>
     public class CustomerAddressModel
     {
         public int Id { get; set; }

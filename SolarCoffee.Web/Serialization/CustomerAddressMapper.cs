@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SolarCoffee.Data.Models;
+﻿using SolarCoffee.Data.Models;
 using SolarCoffee.Web.ViewModels;
 
 namespace SolarCoffee.Web.Serialization

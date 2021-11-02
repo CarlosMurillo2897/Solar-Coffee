@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SolarCoffee.Web.ViewModels
 {
+    /// <summary>
+    /// Order Entity DTO.
+    /// </summary>
     public class OrderModel
     {
         public int Id { get; set; }

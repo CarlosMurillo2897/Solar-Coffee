@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SolarCoffee.Web.ViewModels
 {
     /// <summary>
-    /// View Model for open SalesOrders.
+    /// Open SalesOrders Entity DTO.
     /// </summary>
     public class InvoiceModel
     {

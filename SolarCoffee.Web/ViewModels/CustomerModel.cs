@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SolarCoffee.Web.ViewModels
 {
+    /// <summary>
+    /// Customer Entity DTO.
+    /// </summary>
     public class CustomerModel
     {
         public int Id { get; set; }

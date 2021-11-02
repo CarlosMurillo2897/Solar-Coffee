@@ -1,7 +1,7 @@
 ﻿namespace SolarCoffee.Web.ViewModels
 {
     /// <summary>
-    /// View Model for Sales Order Items.
+    /// Sales Order Items Entity DTO.
     /// </summary>
     public class SalesOrderItemModel
     {
