@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace SolarCoffee.Data.Models
+namespace SolarCoffee.Web.ViewModels
 {
     /// <summary>
-    /// Common Model properties extracted into a Parent Class.
+    /// Base View Model with common properties.
     /// </summary>
-    public class BaseObject
+    public class BaseViewModel
     {
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }

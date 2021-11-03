@@ -80,7 +80,7 @@ namespace SolarCoffee.Services.Inventory
                     Data = inventory
                 };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ServiceResponse<ProductInventory>
                 {
