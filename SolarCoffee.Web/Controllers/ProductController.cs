@@ -12,7 +12,10 @@ namespace SolarCoffee.Web.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly IProductService _productService;
 
-        public ProductController(ILogger<ProductController> logger, IProductService productService)
+        public ProductController(
+            ILogger<ProductController> logger, 
+            IProductService productService
+            )
         {
             _logger = logger;
             _productService = productService;
@@ -35,5 +38,6 @@ namespace SolarCoffee.Web.Controllers
             var archiveResult = _productService.ArchiveProduct(id);
             return Ok(archiveResult);
         }
+
     }
 }

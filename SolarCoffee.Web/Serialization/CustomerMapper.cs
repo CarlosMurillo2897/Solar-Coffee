@@ -22,7 +22,7 @@ namespace SolarCoffee.Web.Serialization
                 UpdatedOn = customer.UpdatedOn,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
-                PrimaryAddress = CustomerAddressMapper.MapCustomerAddress(customer.PrimaryAddress)
+                PrimaryAddress = CustomerAddressMapper.SerializeCustomerAddress(customer.PrimaryAddress)
             };
         }
 
@@ -39,7 +39,7 @@ namespace SolarCoffee.Web.Serialization
                 UpdatedOn = customer.UpdatedOn,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
-                PrimaryAddress = CustomerAddressMapper.MapCustomerAddress(customer.PrimaryAddress)
+                PrimaryAddress = CustomerAddressMapper.SerializeCustomerAddress(customer.PrimaryAddress)
             };
         }
     }

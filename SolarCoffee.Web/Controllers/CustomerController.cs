@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SolarCoffee.Services.Customer;
@@ -20,8 +18,8 @@ namespace SolarCoffee.Web.Controllers
             ICustomerService customerService
             )
         {
-            _customerService = customerService;
             _logger = logger;
+            _customerService = customerService;
         }
 
         [HttpPost("/api/v1/customer")]
@@ -45,7 +43,7 @@ namespace SolarCoffee.Web.Controllers
         [HttpGet("/api/v1/customer")]
         public ActionResult GetCustomers()
         {
-            _logger.LogInformation("Getting Customers.");
+            _logger.LogInformation("Getting All Customers.");
 
             var customers = _customerService.GetAllCustomers();
             var customerModels = customers

@@ -13,7 +13,7 @@ namespace SolarCoffee.Web.Serialization
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public static CustomerAddressModel MapCustomerAddress(CustomerAddress address)
+        public static CustomerAddressModel SerializeCustomerAddress(CustomerAddress address)
         {
             return new CustomerAddressModel
             {
@@ -34,7 +34,7 @@ namespace SolarCoffee.Web.Serialization
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public static CustomerAddress MapCustomerAddress(CustomerAddressModel address)
+        public static CustomerAddress SerializeCustomerAddress(CustomerAddressModel address)
         {
             return new CustomerAddress
             {

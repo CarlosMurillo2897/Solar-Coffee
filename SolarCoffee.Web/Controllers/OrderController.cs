@@ -17,7 +17,8 @@ namespace SolarCoffee.Web.Controllers
         public OrderController(
             ILogger<OrderController> logger,
             IOrderService orderService,
-            ICustomerService customerService)
+            ICustomerService customerService
+            )
         {
             _logger = logger;
             _orderService = orderService;
@@ -32,6 +33,24 @@ namespace SolarCoffee.Web.Controllers
             order.Customer = _customerService.GetCustomerById(invoice.CustomerId);
             _orderService.GenerateOpenOrder(order);
             return Ok();
-        }    
+        }
+
+        [HttpGet("/api/v1/order")]
+        public ActionResult GetOrders()
+        {
+            _logger.LogInformation("Getting all Orders.");
+            var orders = _orderService.GetOrders();
+            var orderModels = OrderMapper.SerializeOrdersToViewModels(orders);
+            return Ok(orderModels);
+        }
+
+        [HttpPatch("/api/v1/order/complete/{id}")]
+        public ActionResult MarkOrderComplete(int id)
+        {
+            _logger.LogInformation($"Marking Order {id} as complete.");
+            _orderService.MarkFulfilled(id);
+            return Ok();
+        }
+
     }
 }
