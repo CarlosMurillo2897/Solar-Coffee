@@ -1,16 +1,24 @@
 <template>
-    <div class="side-menu-container">
-    <img
-      id="imgLogo"
-      src="../assets/images/logo.jpg"
-      alt="Solar Coffee logo"
-    />
+  <div class="side-menu-container">
+    <router-link to="/">
+      <img
+        id="imgLogo"
+        src="../assets/images/logo.jpg"
+        alt="Solar Coffee logo"
+      />
+    </router-link>
     <h1>Management Portal</h1>
-    <solar-button 
-        :id="'menuInventory'"
-        :link="'/inventory'"
-    >
-        Inventory
+    <solar-button id="menuInventory" link="/inventory" is-full-width>
+      Inventory
+    </solar-button>
+    <solar-button id="menuCustomers" link="/customer" isFullWidth>
+      Manage Customers
+    </solar-button>
+    <solar-button id="menuInvoice" link="/invoice/new" isFullWidth>
+      New Invoice
+    </solar-button>
+    <solar-button id="menuOrders" link="/orders" isFullWidth>
+      Orders
     </solar-button>
   </div>
 </template>
@@ -40,7 +48,7 @@ export default class SideMenu extends Vue {}
   box-sizing: border-box;
 }
 
-#imgLog {
+#imgLogo {
   width: 100%;
 }
 
