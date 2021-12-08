@@ -39,7 +39,9 @@ import SolarButton from "@/components/SolarButton.vue";
 import SolarModal from "@/components/modals/SolarModal.vue";
 
 // Types.
-import { IProduct, IProductInventory } from "@/types/Product";
+import { IProduct } from "@/types/Product";
+import { IShipment } from "@/types/Shipment";
+import { IProductInventory } from "@/types/ProductInventory";
 
 @Component({
   name: "ShipmentModal",
@@ -64,6 +66,15 @@ export default class ShipmentModal extends Vue {
 
   close(): void {
     this.$emit("close");
+  }
+  
+  save(): void {
+    let shipment: IShipment = {
+      productId: this.selectedProduct.id,
+      adjustment: this.qtyReceived
+    };
+
+    this.$emit("save", shipment);
   }
 }
 </script>
