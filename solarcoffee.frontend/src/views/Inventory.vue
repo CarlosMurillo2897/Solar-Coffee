@@ -33,7 +33,11 @@
       </tr>
     </table>
     <new-product-modal v-if="isNewProductVisible" />
-    <shipment-modal v-if="isShipmentVisible" :inventory="inventory" />
+    <shipment-modal
+      v-if="isShipmentVisible"
+      :inventory="inventory"
+      @close="closeModals"
+    />
   </div>
 </template>
 
@@ -87,8 +91,17 @@ export default class Inventory extends Vue {
     },
   ];
 
-  showNewProductModal(): void {}
+  closeModals(): void {
+    this.isShipmentVisible = false;
+    this.isNewProductVisible = false;
+  }
 
-  showShipmentModal(): void {}
+  showNewProductModal(): void {
+    this.isNewProductVisible = true;
+  }
+
+  showShipmentModal(): void {
+    this.isShipmentVisible = true;
+  }
 }
 </script>

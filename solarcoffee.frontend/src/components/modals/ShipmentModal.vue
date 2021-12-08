@@ -61,5 +61,9 @@ export default class ShipmentModal extends Vue {
   };
 
   qtyReceived = 0;
+
+  close(): void {
+    this.$emit("close");
+  }
 }
 </script>
