@@ -50,12 +50,17 @@
 import { Component, Vue } from "vue-property-decorator";
 
 // Types.
+import { IProduct } from "@/types/Product";
+import { IShipment } from "@/types/Shipment";
 import { IProductInventory } from "@/types/ProductInventory";
 
 // Components.
 import SolarButton from "@/components/SolarButton.vue";
 import ShipmentModal from "@/components/modals/ShipmentModal.vue";
 import NewProductModal from "@/components/modals/NewProductModal.vue";
+import { InventoryService } from "@/services/inventory-service";
+
+const inventoryService = new InventoryService();
 
 @Component({
   name: "Inventory",
@@ -110,11 +115,20 @@ export default class Inventory extends Vue {
     this.isShipmentVisible = true;
   }
 
-  saveNewProduct(): void {
-    // 
+  saveNewProduct(newProduct: IProduct): void {
+    console.log(newProduct);
   }
-  saveNewShipment(): void {
-    // 
+  
+  saveNewShipment(shipment: IShipment): void {
+    console.log(shipment);
+  }
+
+  async initialize() {
+    this.inventory = await inventoryService.getInventory();
+  }
+
+  async created() {
+    await this.initialize();
   }
 }
 </script>

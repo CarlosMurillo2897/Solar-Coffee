@@ -1,6 +1,7 @@
 ﻿using SolarCoffee.Data.Models;
 using SolarCoffee.Web.ViewModels;
 
+// TODO: AutoMapper can be used with Serialization entities.
 namespace SolarCoffee.Web.Serialization
 {
     /// <summary>

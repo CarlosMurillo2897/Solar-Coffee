@@ -74,7 +74,7 @@ export default class ShipmentModal extends Vue {
       adjustment: this.qtyReceived
     };
 
-    this.$emit("save", shipment);
+    this.$emit("save:shipment", shipment);
   }
 }
 </script>

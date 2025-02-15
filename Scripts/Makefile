@@ -20,7 +20,7 @@ DatabaseName := solardev
 CreateFile := Create.sql
 InsertFile := Insert.sql
 PSQLPath := /var/opt/scripts/
-Env_Var := "POSTGRES_PASSWORD=PSQL"
+EnvFile := ../.env
 
 FrontendProject := ../solarcoffee.frontend
 StartupProject := ../SolarCoffee.Web
@@ -43,9 +43,9 @@ commands:
 	@ECHO dotnet_run: Quick reload for $(StartupProject) project.
 	
 	@ECHO === DOCKER shortcuts available ===
+	@ECHO docker_desktop: Start Docker Desktop.
 	@ECHO docker_start: Start Container.
 	@ECHO docker_run: Create an specific Container.
-	@ECHO docker_service: Start Docker Service.
 	@ECHO docker_psql: Download Docker PostgreSQL image.
 	
 	@ECHO === Postgres shortcuts available ===
@@ -60,9 +60,12 @@ commands:
 	@ECHO ef_add: Create new Migration with latest changes, require an argument to be used as Migration Name.
 
 ######## Solution commands execution.
-start: docker_start start_psql
-start_psql: psql_create start_ef psql_insert
-start_ef: ef_install ef_update
+start: docker_run start_psql
+start_psql: psql_create ef_update psql_insert
+
+# Execute 2 jobs concurrently.
+dev: 
+	make -j 2 vue_run dotnet_run
 
 vue_run:
 	@ECHO ######## Running Vue. 
@@ -70,21 +73,23 @@ vue_run:
 
 dotnet_run:
 	@ECHO ######## Run Dotnet Project.
-	DOTNET run --project $(StartupProject) run
+	DOTNET run --project $(StartupProject) --launch-profile SolarCoffee.Web
 
-######## Docker commands execution. 
-docker_service:
-	@ECHO ######## Enable Docker Service (Windows Only).
-	NET start $(ServiceName)
+######## Docker commands execution.
 
-docker_run:
+docker_desktop:
+	@ECHO ######## Start Docker Desktop.
+	DOCKER desktop start
+
+docker_start: docker_desktop
+	@ECHO ######## Start Container.
+	DOCKER start $(ContainerName)
+
+docker_run: docker_desktop
 	@ECHO ######## Create Container based on image.
 	DOCKER rm -f $(ContainerName)
-	DOCKER run -d -p $(Port):$(Port) --name $(ContainerName) -e $(Env_Var) $(PSQLImage)
-
-docker_start:
-	@ECHO ######## Start Docker.
-	DOCKER start $(ContainerName)
+# PG_Password it's required as environment variable.
+	DOCKER run -d -p $(Port):$(Port) --name $(ContainerName) --env-file $(EnvFile) $(PSQLImage)
 
 docker_psql:
 	@ECHO ######## Download Postgres Image.
@@ -92,9 +97,9 @@ docker_psql:
 
 ######## Postgres commands execution. 
 psql_query:
+# Input example: 'SELECT * FROM \"Products\";'
 	@ECHO ######## Connect to PSQL and execute query if arguments provided.
 	DOCKER exec -t $(ContainerName) $(CommandPath) -U $(UserName) -d $(DatabaseName) -c '$(RUN_ARGS)'
-# Input example: 'SELECT * FROM \"Products\";'
 	
 psql_insert:
 	@ECHO ######## Inserting mock data.
@@ -114,14 +119,14 @@ ef_install:
 	DOTNET new tool-manifest --force
 	DOTNET tool install dotnet-ef
 
-ef_update:
+ef_update: ef_install
 	@ECHO ######## Update Database based on Migrations.
 	DOTNET dotnet-ef Database Update --project $(DataAccessProject) -s $(StartupProject)
 
-ef_drop:
+ef_drop: ef_install
 	@ECHO ######## Drop DB.
 	DOTNET dotnet-ef Database Drop -f --project $(DataAccessProject) -s $(StartupProject)
 
-ef_add:
+ef_add: ef_install
 	@ECHO ######## Add Migrations.
 	DOTNET dotnet-ef Migrations Add $(RUN_ARGS) --project $(DataAccessProject) -s $(StartupProject)
