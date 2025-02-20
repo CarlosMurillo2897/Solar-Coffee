@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
+import { IProductInventory } from "@/types/ProductInventory";
 
 /**
  * InventoryService
@@ -7,9 +8,8 @@ import axios from 'axios';
 export class InventoryService {
     API_URL = process.env.VUE_APP_API_URL;
 
-    public async getInventory(): Promise<any> {
-        console.log('get inv:', this.API_URL);
-        
-        let result: any = await axios.get(`${this.API_URL}/inventory/`);
+    public async getInventory(): Promise<IProductInventory[]> {
+        const result: any = await axios.get(`${this.API_URL}/inventory/`);
+        return result.data;
     }
 }

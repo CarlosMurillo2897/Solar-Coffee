@@ -11,11 +11,11 @@ namespace SolarCoffee.Web.Controllers
     public class InventoryController : ControllerBase
     {
         private readonly ILogger<InventoryController> _logger;
-        private readonly InventoryService _inventoryService;
+        private readonly IInventoryService _inventoryService;
 
         public InventoryController(
             ILogger<InventoryController> logger,
-            InventoryService inventoryService
+            IInventoryService inventoryService
             )
         {
             _logger = logger;

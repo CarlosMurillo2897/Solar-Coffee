@@ -20,7 +20,7 @@ DatabaseName := solardev
 CreateFile := Create.sql
 InsertFile := Insert.sql
 PSQLPath := /var/opt/scripts/
-EnvFile := ../.env
+EnvFile := .env
 
 FrontendProject := ../solarcoffee.frontend
 StartupProject := ../SolarCoffee.Web
@@ -90,6 +90,14 @@ docker_run: docker_desktop
 	DOCKER rm -f $(ContainerName)
 # PG_Password it's required as environment variable.
 	DOCKER run -d -p $(Port):$(Port) --name $(ContainerName) --env-file $(EnvFile) $(PSQLImage)
+	docker exec -t $(ContainerName) bash -c "until psql -U $(PostgresUser) -c 'select 1'>/dev/null 2>&1; \
+			do\
+				echo 'Waiting Postgres server....';\
+				sleep 1;\
+				done;\
+			exit;\
+		"
+		echo DB ready
 
 docker_psql:
 	@ECHO ######## Download Postgres Image.
